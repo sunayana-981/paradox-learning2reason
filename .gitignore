@@ -1,0 +1,21 @@
+# Python cache
+**/__pycache__/
+*.pyc
+
+# VSCode editor files
+.vscode/
+
+# Checkpoints and outputs
+checkpoint-*/
+OUTPUT/
+DATA/
+20.0
+
+# Other common files to ignore
+*.log
+.DS_Store
+
+training_output.zip
+results.json
+vocab.txt
+checkpoint-2.zip
