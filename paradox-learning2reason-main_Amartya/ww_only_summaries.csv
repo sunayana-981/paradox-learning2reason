@@ -1,0 +1,17 @@
+which,metric,value
+vanilla,alpha_mean,4.100306082488911
+vanilla,alpha_weighted_mean,5.621217495896727
+vanilla,log_alpha_norm_mean,6.064745697539902
+vanilla,sv_max_mean,8.319417107899984
+vanilla,mp_softrank_mean,0.25879372063866635
+vanilla,rand_distance_mean,0.13786855850402488
+vanilla,log_spectral_norm_mean,1.4727941348845381
+vanilla,num_spikes_sum,3723.0
+modified,alpha_mean,4.122863630184686
+modified,alpha_weighted_mean,5.640973477914286
+modified,log_alpha_norm_mean,6.080566123157852
+modified,sv_max_mean,8.317170356114705
+modified,mp_softrank_mean,0.2593536473470452
+modified,rand_distance_mean,0.1378928489911416
+modified,log_spectral_norm_mean,1.472143079345305
+modified,num_spikes_sum,3722.0
