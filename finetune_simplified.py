@@ -30,10 +30,10 @@ from torch.utils.data.distributed import DistributedSampler
 import dist
 from tqdm import tqdm, trange
 from torch.utils.data import Dataset
+from safetensors.torch import load_file
 from transformers import (
     MODEL_FOR_SEQUENCE_CLASSIFICATION_MAPPING,
     WEIGHTS_NAME,
-    AdamW,
     AutoConfig,
     AutoModelForSequenceClassification,
     AutoTokenizer,
@@ -43,11 +43,12 @@ from transformers import (
     glue_output_modes as output_modes,
     glue_processors as processors,
 )
+from torch.optim import AdamW
 import pdb
 from transformers import BertForSequenceClassification
 from helpers import *
 
-from dataset import LogicDataset
+from dataset_new import LogicDataset
 
 logger = logging.getLogger(__name__)
 
@@ -613,15 +614,18 @@ def main():
         do_lower_case=args.do_lower_case,
         cache_dir=args.cache_dir if args.cache_dir else None,
     )
-    if "bert" in args.model_name_or_path: 
+    # Make AND/THEN atomic tokens (no splitting).
+    tokenizer.add_special_tokens({"additional_special_tokens": ["[AND]", "[THEN]"]})
+    
+    if "t5" in args.model_name_or_path:
+        from transformers import T5Tokenizer, T5ForConditionalGeneration
+        model = T5ForConditionalGeneration.from_pretrained(args.model_name_or_path)
+    elif "bert" in args.model_name_or_path:
         model = BertForSequenceClassification.from_pretrained(
             args.model_name_or_path,
             config=config,
             cache_dir=args.cache_dir if args.cache_dir else None,
         )
-    if "t5" in args.model_name_or_path:
-        from transformers import T5Tokenizer, T5ForConditionalGeneration
-        model = T5ForConditionalGeneration.from_pretrained(args.model_name_or_path)
     else:
         model = AutoModelForSequenceClassification.from_pretrained(
             args.model_name_or_path,
@@ -632,9 +636,25 @@ def main():
     if args.change_positional_embedding_before_loading:
         expand_position_embeddings(model, args.max_length, args.model_name_or_path)
 
+    # Ensure model's embedding table matches tokenizer (after adding special tokens).
+    model.resize_token_embeddings(len(tokenizer))
+
+    # Quick sanity check
+    print("Tokenizer size:", len(tokenizer))
+    print("Embedding rows:", model.get_input_embeddings().weight.shape[0])
+    print("Has tokens:",
+          "[AND]" in tokenizer.get_vocab(),
+          "[THEN]" in tokenizer.get_vocab())
+
     if args.custom_weight is not None:
-        model.apply(model._init_weights)
-        custom_state_dict = torch.load(args.custom_weight, map_location='cpu')
+        if args.custom_weight.endswith(".safetensors"):
+            # Use the safetensors loader for .safetensors files
+            custom_state_dict = load_file(args.custom_weight, device="cpu")
+            
+        else:
+            custom_state_dict = torch.load(args.custom_weight, map_location='cpu')
+        
+        model.apply(model._init_weights)    
         for key in list(custom_state_dict.keys()):
             custom_state_dict[key.replace("module.", "")] = custom_state_dict[key]
         load_state_dict_flexible(model, custom_state_dict)
@@ -676,10 +696,10 @@ def main():
 
     # Training
     if args.do_train:
-        train_dataset = LogicDataset.initialze_from_file(args.train_file_path, args)
+        train_dataset = LogicDataset.initialze_from_file(args.train_file_path, args, tokenizer=tokenizer)
         train_dataset.report_length()
         
-        val_dataset = LogicDataset.initialze_from_file(args.val_file_path, args)
+        val_dataset = LogicDataset.initialze_from_file(args.val_file_path, args, tokenizer=tokenizer)
         global_step, tr_loss = train(args, train_dataset, model, tokenizer, val_dataset)
         print(" global_step = %s, average loss = %s", global_step, tr_loss)
 
@@ -700,7 +720,7 @@ def main():
 
         # Good practice: save your training arguments together with the trained model
         torch.save(args, os.path.join(args.output_dir, "training_args.bin"))
-        tokenizer = AutoTokenizer.from_pretrained(args.output_dir)
+        # do NOT overwrite tokenizer here; keep the in-memory one
 
     # Evaluation
     print("Enterring evaluation")
@@ -719,10 +739,10 @@ def main():
             results_string = {}
             results = []
             print("\n\n", val_file)
-            val_dataset = LogicDataset.initialze_from_file(val_file, args)
+            val_dataset = LogicDataset.initialze_from_file(val_file, args, tokenizer=tokenizer)
             val_dataset.report_allkinds_of_stats()
 
-            datasets = LogicDataset.initialize_from_file_by_depth(val_file, args)
+            datasets = LogicDataset.initialize_from_file_by_depth(val_file, args, tokenizer=tokenizer)
             depths = list(datasets.keys())
             depths.sort()
             total_example = sum([len(datasets[i]) for i in datasets])

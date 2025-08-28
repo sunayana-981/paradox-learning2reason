@@ -33,8 +33,8 @@ class LogicDataset(Dataset):
             text += " . "
 
         for rule in example["rules"]:
-            text +=  " and ".join(rule[0])
-            text += " , "
+            text +=  " [AND] ".join(rule[0])
+            text += " [THEN] "
             text += rule[-1]
             text += " . "
 

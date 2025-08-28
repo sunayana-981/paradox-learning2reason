@@ -1,21 +1,65 @@
-# Python cache
-**/__pycache__/
-*.pyc
+# ---- Python basics ----
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+*.egg
+build/
+dist/
 
-# VSCode editor files
-.vscode/
+# ---- Environments ----
+.venv/
+venv/
+.env
+.env.*
+pip-wheel-metadata/
 
-# Checkpoints and outputs
-checkpoint-*/
-OUTPUT/
-DATA/
-20.0
+# ---- Jupyter ----
+.ipynb_checkpoints/
 
-# Other common files to ignore
+# ---- Logs & runs ----
 *.log
-.DS_Store
+logs/
+runs/
+wandb/
+tensorboard/
+events.out.tfevents.*
 
+# ---- Tests / coverage ----
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ---- IDE / OS ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ---- Project data/artifacts ----
+DATA/**/.cache/
+DATA/**/cache/
+DATA/**/tmp/
+*.cache
+eval_result.txt
+
+# ---- Transformers / checkpoints ----
+# (keep source code, ignore heavy artifacts)
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.onnx
+pytorch_model.bin
+optimizer.pt
+scheduler.pt
+training_args.bin
+rust_model.ot
+
+# Common checkpoint folders
+checkpoint-*/
+OUTPUT*/
+DATA*/
 training_output.zip
-results.json
-vocab.txt
-checkpoint-2.zip

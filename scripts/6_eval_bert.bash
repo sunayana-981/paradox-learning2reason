@@ -5,10 +5,10 @@ CUDA_VISIBLE_DEVICES=$1 python finetune_simplified.py \
     --do_eval \
     --do_lower_case \
     --save_steps -1 \
-    --per_gpu_eval_batch_size=2   \
-    --per_gpu_train_batch_size=2   \
+    --per_gpu_eval_batch_size=16  \
+    --per_gpu_train_batch_size=16   \
     --overwrite_output_dir \
-    --num_workers 1 \
+    --num_workers 8 \
     --max_length 1000 \
     --output_dir OUTPUT/eval \
     --group_by_which_depth depth \
