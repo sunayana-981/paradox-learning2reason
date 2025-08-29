@@ -19,11 +19,11 @@ import sys
 import warnings
 from typing import Optional, Tuple
 
-import numpy as np
-import pandas as pd
-import torch
-import weightwatcher as ww
-from transformers import (
+import numpy as np # type: ignore
+import pandas as pd # type: ignore
+import torch # type: ignore
+import weightwatcher as ww # type: ignore
+from transformers import ( # type: ignore
     AutoConfig,
     AutoTokenizer,
     AutoModel,
