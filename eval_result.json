@@ -1,0 +1,133 @@
+{
+  "DATA/RP/prop_examples.balanced_by_backward.max_6.json_train": {
+    "overall_acc": 0.41964285714285715,
+    "per_depth": {
+      "0": {
+        "acc": 0.19753086419753085,
+        "count": 81,
+        "fraction": 0.14464285714285716,
+        "precision": 0.5,
+        "recall": 0.03076923076923077,
+        "f1": 0.057971014492753624,
+        "confusion_matrix": [
+          [
+            14,
+            2
+          ],
+          [
+            63,
+            2
+          ]
+        ]
+      },
+      "1": {
+        "acc": 0.2073170731707317,
+        "count": 82,
+        "fraction": 0.14642857142857144,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "confusion_matrix": [
+          [
+            17,
+            6
+          ],
+          [
+            59,
+            0
+          ]
+        ]
+      },
+      "2": {
+        "acc": 0.379746835443038,
+        "count": 79,
+        "fraction": 0.14107142857142857,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "confusion_matrix": [
+          [
+            30,
+            4
+          ],
+          [
+            45,
+            0
+          ]
+        ]
+      },
+      "3": {
+        "acc": 0.43209876543209874,
+        "count": 81,
+        "fraction": 0.14464285714285716,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "confusion_matrix": [
+          [
+            35,
+            0
+          ],
+          [
+            46,
+            0
+          ]
+        ]
+      },
+      "4": {
+        "acc": 0.5512820512820513,
+        "count": 78,
+        "fraction": 0.1392857142857143,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "confusion_matrix": [
+          [
+            43,
+            6
+          ],
+          [
+            29,
+            0
+          ]
+        ]
+      },
+      "5": {
+        "acc": 0.5595238095238095,
+        "count": 84,
+        "fraction": 0.15,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "confusion_matrix": [
+          [
+            47,
+            2
+          ],
+          [
+            35,
+            0
+          ]
+        ]
+      },
+      "6": {
+        "acc": 0.6266666666666667,
+        "count": 75,
+        "fraction": 0.13392857142857142,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "confusion_matrix": [
+          [
+            47,
+            5
+          ],
+          [
+            23,
+            0
+          ]
+        ]
+      }
+    }
+  }
+}

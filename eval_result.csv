@@ -1,0 +1,9 @@
+file,mode,acc,precision,recall,f1,count
+DATA/RP/prop_examples.balanced_by_backward.max_6.json_train,overall,0.594643,,,,
+DATA/RP/prop_examples.balanced_by_backward.max_6.json_train,depth_0,0.580247,0.9428571428571428,0.5076923076923077,0.6599999999999999,81
+DATA/RP/prop_examples.balanced_by_backward.max_6.json_train,depth_1,0.634146,0.9142857142857143,0.5423728813559322,0.6808510638297872,82
+DATA/RP/prop_examples.balanced_by_backward.max_6.json_train,depth_2,0.620253,0.8260869565217391,0.4222222222222222,0.5588235294117647,79
+DATA/RP/prop_examples.balanced_by_backward.max_6.json_train,depth_3,0.481481,0.6666666666666666,0.17391304347826086,0.27586206896551724,81
+DATA/RP/prop_examples.balanced_by_backward.max_6.json_train,depth_4,0.576923,0.25,0.06896551724137931,0.1081081081081081,78
+DATA/RP/prop_examples.balanced_by_backward.max_6.json_train,depth_5,0.595238,0.5714285714285714,0.11428571428571428,0.19047619047619044,84
+DATA/RP/prop_examples.balanced_by_backward.max_6.json_train,depth_6,0.693333,0.0,0.0,0.0,75

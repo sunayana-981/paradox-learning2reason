@@ -1,0 +1,9 @@
+file,mode,acc,
+
+DATA/RP/prop_examples.balanced_by_backward.max_6.json_train,overall,0.419643,DATA/RP/prop_examples.balanced_by_backward.max_6.json_train,depth_0,0.197531,
+DATA/RP/prop_examples.balanced_by_backward.max_6.json_train,depth_1,0.207317,
+DATA/RP/prop_examples.balanced_by_backward.max_6.json_train,depth_2,0.379747,
+DATA/RP/prop_examples.balanced_by_backward.max_6.json_train,depth_3,0.432099,
+DATA/RP/prop_examples.balanced_by_backward.max_6.json_train,depth_4,0.551282,
+DATA/RP/prop_examples.balanced_by_backward.max_6.json_train,depth_5,0.559524,
+DATA/RP/prop_examples.balanced_by_backward.max_6.json_train,depth_6,0.626667,

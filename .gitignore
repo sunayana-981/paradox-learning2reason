@@ -63,3 +63,5 @@ checkpoint-*/
 OUTPUT*/
 DATA*/
 training_output.zip
+qwen3-4B/
+qwen3-4B-dense/

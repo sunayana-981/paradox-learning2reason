@@ -98,9 +98,9 @@ def safe_evaluate(args, model, tokenizer, eval_dataset):
 
 def main():
     class Args:
-        model_name_or_path = "OUTPUT/RP/BERT_singleGPU/checkpoint-19"
+        model_name_or_path = "OUTPUT/RP/BERT/checkpoint-19"
         # Use the same dir as the model checkpoint so tokenizer & model stay in lockstep
-        tokenizer_path = "OUTPUT/RP/BERT_singleGPU"
+        tokenizer_path = "OUTPUT/RP/BERT"
         val_file_path = "DATA/RP/prop_examples.balanced_by_backward.max_6.json_train"  # <- use test/val file
         model_type = "bert"
         do_lower_case = True
